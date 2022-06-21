@@ -1,0 +1,25 @@
+{
+    "settings": {
+        "index": {
+            "number_of_shards": 5,
+            "number_of_replicas": 1
+        }
+    },
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "my_vector": {
+                "type": "dense_vector",
+                "dims": 1280
+            }
+        }
+    }
+}

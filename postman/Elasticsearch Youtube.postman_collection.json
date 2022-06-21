@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "03fd3f21-cc35-4d6a-9676-49b0cae54d58",
+		"name": "Elasticsearch Youtube",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create index",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"settings\": {\n        \"index\": {\n            \"number_of_shards\": 5,\n            \"number_of_replicas\": 1\n        }\n    },\n    \"mappings\": {\n        \"properties\": {\n            \"id\": {\n                \"type\": \"text\",\n                \"fields\": {\n                    \"keyword\": {\n                        \"type\": \"keyword\",\n                        \"ignore_above\": 256\n                    }\n                }\n            },\n            \"my_vector\": {\n                \"type\": \"dense_vector\",\n                \"dims\": 1280\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/my_index_name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"my_index_name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/my_index_name/_doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"my_index_name",
+						"_doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mappings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/my_index_name/_mappings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"my_index_name",
+						"_mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Index",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/my_index_name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"my_index_name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search document",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/my_index_name/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"my_index_name",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get document count",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
