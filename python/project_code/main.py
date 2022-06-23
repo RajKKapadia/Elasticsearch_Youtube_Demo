@@ -45,8 +45,14 @@ def search_document():
 
     result = esknn.search_document(query, field_name)
 
-    print(result['hits']['hits'][0]['_source'])
+    documents = []
+
+    hits = result['hits']['hits']
+
+    for hit in hits:
+        documents.append(hit['_source'])
 
     return {
-        "status": 200
+        "status": 200,
+        "documents": documents
     }
